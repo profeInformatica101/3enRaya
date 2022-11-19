@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>3 en Raya</title>
+</head>
+<style>
+    html{
+        background: url('https://cdn.pixabay.com/photo/2012/04/15/19/14/honeycomb-34984_960_720.png') no-repeat center center fixed;
+        w
+    }
+    table{
+        border: 3px solid;
+    }
+    h1{
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        size:30px;
+    }
+    .celda{
+        border: 1px solid;
+        width: 30px;
+        height: 30px;
+        background-color:azure;
+    }
+    img{
+        width: 30px;
+        height: 30px;
+    }
+</style>
+<script>
+    var jugador_actual = 1;
+    let tablero = new Array();
+   
+
+    function pulsado(celda){
+        
+        //Comprobammos si esta libre la casilla
+        if(contieneCeldaTablero(celda)){
+          alert("Hay no puedes colocar hay una pieza");
+           
+        }else{
+            agregarCeldaTablero(celda, jugador_actual);
+            jugador_actual = cambiaJugador(jugador_actual);
+            
+        }
+        mostrarJugadorActual(jugador_actual);
+
+    
+        console.log("jugador_actual: "+ this.jugador_actual + ", celda: "+celda + " , tablero: " + tablero);
+    }
+
+    //Devuelve True o False si contiene la celda en el tablero
+    function contieneCeldaTablero(celda){
+        return tablero.includes(celda);
+    }
+
+    //Agrega una celda al tablero
+    function agregarCeldaTablero(celda){
+        
+
+        mostrarImagen(celda, jugador_actual)
+        tablero.push(celda);
+    }
+
+    function mostrarImagen(celda, jugador){
+        if(jugador == 1){
+            document.getElementById(celda).innerHTML ="<img src='https://cdn-icons-png.flaticon.com/512/2039/2039977.png' alt='Rey Blanco' >";
+
+        }else{
+            document.getElementById(celda).innerHTML ="<img src='https://cdn-icons-png.flaticon.com/512/45/45124.png' alt='Rey Negro' >";
+
+        }
+    }
+    function mostrarJugadorActual(jugador){
+        document.getElementById("idImagenJugadorActual").innerHTML ="Juega jugador: ";
+        if(jugador == 1){
+            document.getElementById("idImagenJugadorActual").innerHTML +="<img src='https://cdn-icons-png.flaticon.com/512/2039/2039977.png' alt='Rey Blanco' >";
+
+        }else{
+            document.getElementById("idImagenJugadorActual").innerHTML +="<img src='https://cdn-icons-png.flaticon.com/512/45/45124.png' alt='Rey Negro' >";
+
+        }
+    }
+
+    function cambiaJugador(jugador){
+        alert(jugador);
+        if(jugador == 1){
+            //Si es jugador (1) devuelve el siguiente jugador (2)
+            return 2;
+        }else{
+            //Si es jugador (2) devuelve el siguiente (1)
+            return 1;
+        }
+    }
+  
+</script>
+<body>
+    <h1>Tres en Raya</h1>
+    <div id="idImagenJugadorActual">Juega jugador:<img src='https://cdn-icons-png.flaticon.com/512/2039/2039977.png' alt='Rey Blanco' ></div>
+    <table>
+        <tr>
+            <td><div class="celda" id="a0" onclick="pulsado(this.id)"></div></td>
+            <td><div class="celda" id="a1" onclick="pulsado(this.id)"></div></td>
+            <td><div class="celda" id="a2" onclick="pulsado(this.id)"></div></td>
+        </tr>
+        <tr>
+            <td><div  class="celda" id="b0" onclick="pulsado(this.id)"></div></td>
+            <td><div  class="celda" id="b1" onclick="pulsado(this.id)"></div></td>
+            <td><div  class="celda" id="b2" onclick="pulsado(this.id)"></div></td>
+        </tr>
+        <tr>
+            <td><div  class="celda" id="c0" onclick="pulsado(this.id)"></div></td>
+            <td><div  class="celda" id="c1" onclick="pulsado(this.id)"></div></td>
+            <td><div  class="celda" id="c2" onclick="pulsado(this.id)"></div></td>
+        </tr>
+    </table>
+    
+</body>
+</html>
